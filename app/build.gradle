@@ -1,0 +1,9 @@
+apply plugin: 'application'
+
+dependencies {
+    compile project(':controls')
+    compile 'com.diffplug.matsim:matconsolectl:4.4.2'
+}
+
+mainClassName = 'project.Main'
+

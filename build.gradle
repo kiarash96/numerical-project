@@ -1,0 +1,19 @@
+subprojects {
+    apply plugin: 'java'
+ 
+    repositories {
+        mavenCentral()
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/java']
+            }
+            resources {
+                srcDirs = ['src/resources']
+            }
+        }
+    }
+}
+
