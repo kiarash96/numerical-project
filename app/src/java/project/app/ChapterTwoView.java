@@ -91,16 +91,25 @@ public class ChapterTwoView {
     }
 
     private void doNewtonRaphson() {
-        /*Object[] res = connection.feval("newtonRaphson", 4,
-                fn1TextField.getText(),
-                Double.parseDouble(lowTextField.getText()),
-                Double.parseDouble(steps1TextField.getText()),
-                0.01);
+        MatlabStruct args = new MatlabStruct(
+                new MatlabStruct.Pair<>("func", fn1TextField.getText()),
+                new MatlabStruct.Pair<>("p0", Double.parseDouble(lowTextField.getText())),
+                new MatlabStruct.Pair<>("step", Double.parseDouble(steps1TextField.getText())),
+                new MatlabStruct.Pair<>("tol", 0.01)
+        );
 
-        double[] roots = (double[]) res[0];
-        double[] values = (double[]) res[1];
-        String message = (String) res[2];
-        double[] fail = (double[]) res[3];
+        MatlabStruct res = null;
+        try {
+            res = connection.feval("chapter-2", "newtonRaphson", args,
+                    "roots", "values", "message", "fail");
+        } catch (MatlabInvocationException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+
+        double[] roots = res.get("roots");
+        double[] values = res.get("values");
+        String message = res.get("message");
+        double[] fail = res.get("fail");
 
         if (fail[0] == 1)
             ans1Label.setText(message);
