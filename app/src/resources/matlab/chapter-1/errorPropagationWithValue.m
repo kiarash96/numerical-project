@@ -108,8 +108,7 @@ while(i <= n)
            k=k+1;
            finish = finish-1;
         elseif expression(i)=='^'
-           % to Moeen: bonus part is not implemented
-           errors(finish-2) =  numbers(finish-1) *  numbers(finish-2)^(numbers(finish-1)-1) * errors(finish-2);
+           errors(finish-2) =  sqrt((numbers(finish-1) *  numbers(finish-2)^(numbers(finish-1)-1) * errors(finish-2))^2 +(log(numbers(finish-2))*numbers(finish-2)^numbers(finish-1)*errors(finish-1))^2);
            erransweres(k) = errors(finish-2);
            if(isnumeric(a))
            numbersString  = strcat(numbersString, 'e(', num2str(numbers (finish-1)), '^', num2str(numbers (finish-2)),') =   ', num2str(errors(finish-2)),'\\' );
