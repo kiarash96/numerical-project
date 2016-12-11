@@ -57,17 +57,19 @@ public class Main extends Application {
         connection.setRootPath(getClass().getResource("/matlab").getPath());
         primaryStage.setOnCloseRequest((event) -> connection.close());
 
-        /*FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/chapter-1.fxml"));
+        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/chapter-1.fxml"));
         ChapterOneView ch1Controller = new ChapterOneView();
         loader1.setController(ch1Controller);
         TitledPane root1 = loader1.load();
-        ch1Controller.init(connection);*/
+        ch1Controller.init(connection);
 
+/*
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/chapter-2.fxml"));
         ChapterTwoView ch2controller = new ChapterTwoView();
         loader.setController(ch2controller);
         TitledPane root2 = loader.load();
         ch2controller.init(connection);
+*/
 
         /*FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/chapter-3.fxml"));
         ChapterThreeView ch3Controller = new ChapterThreeView();
@@ -76,8 +78,8 @@ public class Main extends Application {
         ch3Controller.init(connection);*/
 
         Accordion accordion = new Accordion();
-        accordion.getPanes().addAll(root2);
-        accordion.setExpandedPane(root2);
+        accordion.getPanes().addAll(root1);
+        accordion.setExpandedPane(root1);
 
         primaryStage.setTitle("Numerical Methods Project");
         primaryStage.setScene(new Scene(accordion));
