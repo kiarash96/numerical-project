@@ -49,6 +49,11 @@ public class MatlabStruct {
         return (p == null ? null : (T) p.value);
     }
 
+    public void add(String name, Object value){
+        Pair p = new Pair(name, value);
+        fields.add(p);
+    }
+
     public void set(String name, Object value) {
         Pair p = find(name);
         if (p == null)
