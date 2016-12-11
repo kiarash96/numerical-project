@@ -17,7 +17,7 @@ public class LatexLabel extends Control {
     private DoubleProperty fontSize;
 
     public LatexLabel() {
-        latex = new SimpleStringProperty("");
+        latex = new SimpleStringProperty("\\LaTeX");
         fontSize = new SimpleDoubleProperty(Font.getDefault().getSize());
     }
 
