@@ -2,8 +2,9 @@ package project.app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
 import project.app.utility.MatlabConnection;
 
@@ -53,17 +54,33 @@ public class Main extends Application {
 
         MatlabConnection connection = new MatlabConnection();
         connection.open();
-        connection.setRootPath(getClass().getResource("/").getPath());
+        connection.setRootPath(getClass().getResource("/matlab").getPath());
         primaryStage.setOnCloseRequest((event) -> connection.close());
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/chapter-1.fxml"));
-        ChapterOneView ch1controller = new ChapterOneView();
-        loader.setController(ch1controller);
-        Parent root = loader.load();
-        ch1controller.init(connection);
+        /*FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/chapter-1.fxml"));
+        ChapterOneView ch1Controller = new ChapterOneView();
+        loader1.setController(ch1Controller);
+        TitledPane root1 = loader1.load();
+        ch1Controller.init(connection);*/
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/chapter-2.fxml"));
+        ChapterTwoView ch2controller = new ChapterTwoView();
+        loader.setController(ch2controller);
+        TitledPane root2 = loader.load();
+        ch2controller.init(connection);
+
+        /*FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/chapter-3.fxml"));
+        ChapterThreeView ch3Controller = new ChapterThreeView();
+        loader3.setController(ch3Controller);
+        TitledPane root3 = loader3.load();
+        ch3Controller.init(connection);*/
+
+        Accordion accordion = new Accordion();
+        accordion.getPanes().addAll(root2);
+        accordion.setExpandedPane(root2);
 
         primaryStage.setTitle("Numerical Methods Project");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(accordion));
         primaryStage.show();
     }
 
