@@ -5,5 +5,5 @@ dependencies {
     compile 'com.diffplug.matsim:matconsolectl:4.4.2'
 }
 
-mainClassName = 'project.Main'
+mainClassName = 'project.app.Main'
 
