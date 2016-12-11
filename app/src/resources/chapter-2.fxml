@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import project.controls.AbusedTextArea?>
+<?import project.controls.AbusedTextField?>
+<?import project.controls.CalculatedTitledPane?>
+<?import project.controls.Calculator?>
+<?import project.controls.LatexLabel?>
+
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="1100.0" text="Chapter Two" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <Accordion>
+         <panes>
+            <CalculatedTitledPane text="other methods">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <center>
+                              <Label fx:id="ans1Label" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="108.0" text="answer" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </center>
+                     <top>
+                        <VBox prefHeight="356.0" prefWidth="1076.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox prefHeight="190.0" prefWidth="1076.0">
+                                 <children>
+                                    <BorderPane prefHeight="173.0" prefWidth="592.0">
+                                       <left>
+                                          <Label prefHeight="24.0" prefWidth="115.0" text="function : f(x) = " BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <bottom>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Pane prefHeight="100.0" prefWidth="119.0" />
+                                                <LatexLabel fx:id="latexLabel1" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </bottom>
+                                       <right>
+                                          <AbusedTextField fx:id="fn1TextField" prefHeight="26.0" prefWidth="452.0" BorderPane.alignment="CENTER" />
+                                       </right>
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                    </BorderPane>
+                                    <Calculator />
+                                 </children>
+                              </HBox>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <left>
+                                    <GridPane prefHeight="183.0" prefWidth="371.0" BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="99.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="136.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="102.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label prefHeight="31.0" prefWidth="95.0" text="interval's start" />
+                                          <Label prefHeight="31.0" prefWidth="95.0" text="interval's end" GridPane.rowIndex="1" />
+                                          <Label prefHeight="52.0" prefWidth="100.0" text="steps" GridPane.rowIndex="2" />
+                                          <Button fx:id="calc1Button" mnemonicParsing="false" prefHeight="61.0" prefWidth="130.0" text="calculate" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                             </GridPane.margin>
+                                          </Button>
+                                          <AbusedTextField fx:id="lowTextField" GridPane.columnIndex="1" />
+                                          <AbusedTextField fx:id="highTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <AbusedTextField fx:id="steps1TextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label layoutX="10.0" layoutY="18.0" prefHeight="31.0" prefWidth="95.0" text="method" GridPane.rowIndex="3" />
+                                          <ComboBox fx:id="methodChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                 </left>
+                                 <right>
+                                    <Pane prefHeight="74.0" prefWidth="211.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
+               </content>
+            </CalculatedTitledPane>
+            <CalculatedTitledPane text="fixed point">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <top>
+                              <Label alignment="CENTER" prefHeight="32.0" prefWidth="108.0" text="answer" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+                           </top>
+                        </BorderPane>
+                     </center>
+                     <top>
+                        <HBox prefHeight="216.0" prefWidth="1076.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <VBox prefHeight="136.0" prefWidth="551.0">
+                                 <children>
+                                    <BorderPane prefHeight="126.0" prefWidth="719.0">
+                                       <left>
+                                          <Label prefHeight="24.0" prefWidth="118.0" text="function : f(x) = " BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <bottom>
+                                          <HBox prefHeight="100.0" prefWidth="629.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Pane prefHeight="100.0" prefWidth="119.0" />
+                                                <LatexLabel />
+                                             </children>
+                                          </HBox>
+                                       </bottom>
+                                       <right>
+                                          <AbusedTextField fx:id="func2Textfield" prefHeight="26.0" prefWidth="433.0" BorderPane.alignment="CENTER">
+                                             <BorderPane.margin>
+                                                <Insets right="10.0" top="5.0" />
+                                             </BorderPane.margin>
+                                          </AbusedTextField>
+                                       </right>
+                                    </BorderPane>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                       <left>
+                                          <GridPane BorderPane.alignment="CENTER">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="31.0" prefWidth="95.0" text="Start point" />
+                                                <AbusedTextField GridPane.columnIndex="1" fx:id="x0TextField" />
+                                             </children>
+                                          </GridPane>
+                                       </left>
+                                       <center>
+                                          <GridPane alignment="CENTER" prefHeight="74.0" prefWidth="215.0" BorderPane.alignment="CENTER">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label alignment="CENTER" text="steps" />
+                                                <AbusedTextField fx:id="steps2TextField" GridPane.columnIndex="1" />
+                                             </children>
+                                             <BorderPane.margin>
+                                                <Insets left="100.0" right="100.0" />
+                                             </BorderPane.margin>
+                                          </GridPane>
+                                       </center>
+                                    </BorderPane>
+                                    <Button fx:id="calcButton2" alignment="CENTER" mnemonicParsing="false" prefHeight="61.0" prefWidth="130.0" text="calculate" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <Calculator />
+                           </children>
+                        </HBox>
+                     </top>
+                  </BorderPane>
+               </content>
+            </CalculatedTitledPane>
+            <CalculatedTitledPane text="generalized newton-ralphson">
+               <content>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="224.0" prefWidth="786.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="224.0" prefWidth="208.0">
+                                 <children>
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="n = " />
+                                          <AbusedTextField fx:id="nTextField" prefHeight="26.0" prefWidth="84.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Button fx:id="calc3Button" mnemonicParsing="false" text="calculate" />
+                                 </children>
+                              </VBox>
+                              <AbusedTextArea fx:id="formulaBox" />
+                              <Calculator>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Calculator>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <Label text="answer" />
+                     </children>
+                  </VBox>
+               </content>
+            </CalculatedTitledPane>
+         </panes>
+      </Accordion>
+   </content>
+</TitledPane>

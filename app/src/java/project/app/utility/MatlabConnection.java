@@ -44,7 +44,7 @@ public class MatlabConnection {
             throws MatlabInvocationException {
 
         if (rootPath == null)
-            throw new RuntimeException("feval is called before setting root directory");
+            throw new IllegalStateException("feval is called before setting root directory");
 
         this.cd(relPath);
         Object[] arr = proxy.returningFeval(funcname,

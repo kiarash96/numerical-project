@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import project.controls.AbusedTextArea?>
+<?import project.controls.AbusedTextField?>
+<?import project.controls.CalculatedTitledPane?>
+<?import project.controls.Calculator?>
+<?import project.controls.LatexLabel?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="810.0" text="Chapter Tree" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <Accordion>
+         <panes>
+            <CalculatedTitledPane fx:id="interpolationPanel" text="Interpolation">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="133.0" text="number on points">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <AbusedTextField fx:id="InterpolationsNumberOfpointsEntry" prefHeight="26.0" prefWidth="59.0" />
+                              <Label prefHeight="25.0" prefWidth="100.0" text="points as (x,y)">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <AbusedTextArea fx:id="InterpolationsPointsEntry" prefHeight="100.0" prefWidth="336.0" />
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ChoiceBox fx:id="interpolationType" prefWidth="150.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </ChoiceBox>
+                                    <Button fx:id="interpolationsFunctionCalculateButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="110.0" text="calculate">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <LatexLabel fx:id="interpolationsFunctionLatex" />
+                        <HBox prefHeight="41.0" prefWidth="786.0">
+                           <children>
+                              <Label prefHeight="19.0" prefWidth="19.0" text="f(" />
+                              <AbusedTextField fx:id="interpolationsFunctionArgument" prefHeight="26.0" prefWidth="19.0" />
+                              <Label prefHeight="19.0" prefWidth="33.0" text=" ) =" />
+                              <Label fx:id="interpolationsAnswerToArgument" prefHeight="19.0" prefWidth="56.0" text="answer" />
+                              <Button fx:id="interpolationsValueCalculateButton" mnemonicParsing="false" text="calculate">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Calculator fx:id="interpolationsCalc" prefHeight="182.0" prefWidth="786.0" />
+                     </children>
+                  </VBox>
+               </content>
+            </CalculatedTitledPane>
+            <CalculatedTitledPane fx:id="curveFittingPanel" text="curve fitting">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="100.0" prefWidth="232.0">
+                                 <children>
+                                    <HBox prefHeight="58.0" prefWidth="131.0">
+                                       <children>
+                                          <Label prefHeight="25.0" prefWidth="127.0" text="number on points" />
+                                          <AbusedTextField fx:id="curveFittingNumberOfpointsEntry" prefHeight="26.0" prefWidth="96.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label prefHeight="25.0" prefWidth="48.0" text="f(x) = " />
+                                          <AbusedTextField fx:id="functionType" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Label prefHeight="25.0" prefWidth="100.0" text="points as (x,y)">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <AbusedTextArea fx:id="curveFittingPointsEntry" prefHeight="100.0" prefWidth="301.0" />
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ChoiceBox prefWidth="150.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </ChoiceBox>
+                                    <Button fx:id="curveFittingFunctionCalculateButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="110.0" text="calculate">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <LatexLabel fx:id="curveFittingFunctionLatex" />
+                        <HBox prefHeight="40.0" prefWidth="786.0">
+                           <children>
+                              <Label prefHeight="19.0" prefWidth="14.0" text="f(" />
+                              <AbusedTextField fx:id="curveFittingFunctionArgument" prefHeight="26.0" prefWidth="19.0" />
+                              <Label prefHeight="19.0" prefWidth="32.0" text=" ) =" />
+                              <Label fx:id="curveFittingAnswerToArgument" prefHeight="19.0" prefWidth="56.0" text="answer" />
+                              <Button fx:id="curveFittingValueCalculateButton" mnemonicParsing="false" text="calculate">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Calculator fx:id="curveFittingCalc" />
+                     </children>
+                  </VBox>
+               </content>
+            </CalculatedTitledPane>
+         </panes>
+      </Accordion>
+   </content>
+</TitledPane>

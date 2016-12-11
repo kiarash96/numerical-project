@@ -13,6 +13,8 @@ import java.awt.image.BufferedImage;
 /**
  * Created by kiarash on 12/10/16.
  */
+
+// TODO: Separate behavior from skin
 public class LatexLabelSkin extends SkinBase<LatexLabel> {
 
     private ImageView iv;
