@@ -46,9 +46,16 @@ public class MatlabConnection {
         if (rootPath == null)
             throw new IllegalStateException("feval is called before setting root directory");
 
+        Object[] arr = null;
+
         this.cd(relPath);
-        Object[] arr = proxy.returningFeval(funcname,
-                retNames.length, args.toArray());
+        try {
+            arr = proxy.returningFeval(funcname,
+                    retNames.length, args.toArray());
+        }
+        finally {
+            this.cd(rootPath);
+        }
 
         MatlabStruct res = new MatlabStruct(retNames);
         for (int i = 0; i < retNames.length; i ++) {
@@ -64,7 +71,6 @@ public class MatlabConnection {
             }
         }
 
-        this.cd(rootPath);
         return res;
     }
 
