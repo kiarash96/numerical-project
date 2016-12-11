@@ -78,9 +78,9 @@ public class ChapterTwoView {
         double[] roots = res.get("roots");
         double[] values = res.get("values");
         String message = res.get("message");
-        double fail = res.get("fail");
+        double[] fail = res.get("fail");
 
-        if (fail == 1)
+        if (fail[0] == 1)
             ans1Label.setText(message);
         else {
             StringBuilder ans = new StringBuilder("");

@@ -64,10 +64,7 @@ public class MatlabConnection {
                 res.set(retNames[i], (String) v);
             else { // double[]
                 double[] mat = (double[]) v;
-                if (mat.length == 1)
-                    res.set(retNames[i], mat[0]);
-                else
-                    res.set(retNames[i], mat);
+                res.set(retNames[i], mat);
             }
         }
 
