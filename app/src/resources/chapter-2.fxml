@@ -107,7 +107,7 @@
                      <center>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <top>
-                              <Label alignment="CENTER" prefHeight="32.0" prefWidth="108.0" text="answer" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+                              <Label fx:id="ans2Label" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="108.0" text="answer" textAlignment="CENTER" BorderPane.alignment="CENTER" />
                            </top>
                         </BorderPane>
                      </center>
@@ -118,18 +118,18 @@
                                  <children>
                                     <BorderPane prefHeight="126.0" prefWidth="719.0">
                                        <left>
-                                          <Label prefHeight="24.0" prefWidth="118.0" text="function : f(x) = " BorderPane.alignment="CENTER" />
+                                          <Label prefHeight="24.0" prefWidth="141.0" text="function : x = g(x) = " BorderPane.alignment="CENTER" />
                                        </left>
                                        <bottom>
                                           <HBox prefHeight="100.0" prefWidth="629.0" BorderPane.alignment="CENTER">
                                              <children>
                                                 <Pane prefHeight="100.0" prefWidth="119.0" />
-                                                <LatexLabel />
+                                                <LatexLabel fx:id="latexLabel2" />
                                              </children>
                                           </HBox>
                                        </bottom>
                                        <right>
-                                          <AbusedTextField fx:id="func2Textfield" prefHeight="26.0" prefWidth="433.0" BorderPane.alignment="CENTER">
+                                          <AbusedTextField fx:id="fn2TextField" prefHeight="26.0" prefWidth="402.0" BorderPane.alignment="CENTER">
                                              <BorderPane.margin>
                                                 <Insets right="10.0" top="5.0" />
                                              </BorderPane.margin>

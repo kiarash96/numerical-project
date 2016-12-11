@@ -1,4 +1,4 @@
-function [ roots, valueInRoots ,message, fail] = fixedPoint(func,p0, step)
+function [ roots, values ,message, fail] = fixedPoint(func,p0, step)
 
     str = '@(x)';
     func = strcat(str, func);
@@ -15,8 +15,9 @@ function [ roots, valueInRoots ,message, fail] = fixedPoint(func,p0, step)
     
     
     while i <= step
-       roots(i+1) = g(roots(i));
-       valueInRoots (i+1) = f(roots(i+1));
+       roots(i+1) = f(roots(i));
        i = i+1;
     end
+
+    values = zeros(step);
 end

@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import matlabcontrol.MatlabInvocationException;
 import project.LatexParser;
 import project.app.utility.MatlabConnection;
@@ -23,8 +24,14 @@ public class ChapterTwoView {
     @FXML ComboBox<String> methodChoice;
     @FXML Button calc1Button;
     @FXML Label ans1Label;
-
     @FXML LatexLabel latexLabel1;
+
+    // second pane
+    @FXML TextField fn2TextField, x0TextField, steps2TextField;
+    @FXML LatexLabel latexLabel2;
+    @FXML Button calcButton2;
+    @FXML Label ans2Label;
+
 
     MatlabConnection connection;
 
@@ -54,6 +61,8 @@ public class ChapterTwoView {
             else if (methodChoice.getValue().equals("Newton-Raphson"))
                 doNewtonRaphson();
         }));
+
+        calcButton2.setOnAction((event) -> doFixedPoint());
     }
 
     private void doType1(String method) {
@@ -118,6 +127,36 @@ public class ChapterTwoView {
             for (int i = 0; i < roots.length; i ++)
                 ans.append((i == 0 ? "" : " -> ") + roots[i]);
             ans1Label.setText(ans.toString());
-        }*/
+        }
+    }
+
+    private void doFixedPoint() {
+        MatlabStruct args = new MatlabStruct(
+                new MatlabStruct.Pair<>("func", fn2TextField.getText()),
+                new MatlabStruct.Pair<>("p0", Double.parseDouble(x0TextField.getText())),
+                new MatlabStruct.Pair<>("step", Double.parseDouble(steps2TextField.getText()))
+        );
+
+        MatlabStruct res = null;
+        try {
+            res = connection.feval("chapter-2", "fixedPoint", args,
+                    "roots", "values", "message", "fail");
+        } catch (MatlabInvocationException e) {
+            new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage()).show();
+        }
+
+        double[] roots = res.get("roots");
+        double[] values = res.get("values");
+        String message = res.get("message");
+        double[] fail = res.get("fail");
+
+        if (fail[0] == 1)
+            ans2Label.setText(message);
+        else {
+            StringBuilder ans = new StringBuilder("");
+            for (int i = 0; i < roots.length; i ++)
+                ans.append((i == 0 ? "" : " -> ") + roots[i]);
+            ans2Label.setText(ans.toString());
+        }
     }
 }
