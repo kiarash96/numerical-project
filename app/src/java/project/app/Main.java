@@ -1,13 +1,11 @@
 package project.app;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import project.app.utility.MatlabConnection;
-import project.app.utility.MatlabStruct;
-import project.controls.LatexLabel;
 
 /**
  * Created by kiarash on 12/9/16.
@@ -17,7 +15,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        MatlabConnection connection = new MatlabConnection();
+        /*MatlabConnection connection = new MatlabConnection();
         connection.open();
         connection.setRootPath("/home/kiarash");
 
@@ -38,22 +36,35 @@ public class Main extends Application {
         TextField tf = new TextField("\\frac{1}{2 + \\frac{3}{5}}");
         LatexLabel l = new LatexLabel();
         l.setFontSize(32);
-        l.latexProperty().bind(tf.textProperty());
-        VBox box = new VBox(tf, l);
+        //l.latexProperty().bind(tf.textProperty());
+        LatexParser parser = new LatexParser();
+        Label label = new Label();
+        tf.textProperty().addListener((observable, oldValue, newValue) -> {
+            l.setLatex(parser.latex(newValue));
+            parser.setHashtag(true);
+            label.setText(parser.postfix(newValue));
+            parser.setHashtag(false);
+        });
+
+        VBox box = new VBox(tf, l, label);
         primaryStage.setOnCloseRequest((event) -> connection.close());
         primaryStage.setScene(new Scene(box));
-        primaryStage.show();
+        primaryStage.show();*/
 
-        /*MatlabConnection connection = new MatlabConnection();
+        MatlabConnection connection = new MatlabConnection();
         connection.open();
         connection.setRootPath(getClass().getResource("/").getPath());
         primaryStage.setOnCloseRequest((event) -> connection.close());
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/chapter-1.fxml"));
-        loader.setController(new ChapterOneView(connection));
+        ChapterOneView ch1controller = new ChapterOneView();
+        loader.setController(ch1controller);
+        Parent root = loader.load();
+        ch1controller.init(connection);
+
         primaryStage.setTitle("Numerical Methods Project");
-        primaryStage.setScene(new Scene(loader.load()));
-        primaryStage.show();*/
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
