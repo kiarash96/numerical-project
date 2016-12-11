@@ -1,4 +1,4 @@
-package project;
+package project.app;
 
 import java.util.*;
 
@@ -31,7 +31,7 @@ public class LatexParser {
         }
     }
 
-    private static Map<String, Operator> ops = new HashMap<String, Operator>() {{
+    private Map<String, Operator> ops = new HashMap<String, Operator>() {{
         put("+", Operator.ADD);
         put("-", Operator.SUBTRACT);
         put("*", Operator.MULTIPLY);
@@ -39,12 +39,18 @@ public class LatexParser {
         put("^", Operator.POWER);
     }};
 
-    private static boolean isHigerPrec(String op, String sub)
+    private boolean isHigerPrec(String op, String sub)
     {
         return (ops.containsKey(sub) && ops.get(sub).precedence >= ops.get(op).precedence);
     }
 
-    public static String postfix(String infix)
+    boolean hashtag = false;
+
+    public void setHashtag(boolean hashtag) {
+        this.hashtag = hashtag;
+    }
+
+    public String postfix(String infix)
     {
         StringBuilder output = new StringBuilder();
         Deque<String> stack  = new LinkedList<>();
@@ -72,7 +78,7 @@ public class LatexParser {
 
                 // digit
             } else {
-                output.append(token).append(' ');
+                output.append("#" + token + "#").append(' ');
             }
         }
 
