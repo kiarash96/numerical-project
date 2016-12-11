@@ -1,4 +1,4 @@
-package project.app;
+package project;
 
 import java.util.*;
 
@@ -78,7 +78,8 @@ public class LatexParser {
 
                 // digit
             } else {
-                output.append("#" + token + "#").append(' ');
+                output.append((hashtag ? "#" : "") + token
+                        + (hashtag ? "#" : "")).append(' ');
             }
         }
 
