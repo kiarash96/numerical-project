@@ -198,21 +198,34 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button fx:id="calc3Button" mnemonicParsing="false" text="calculate" />
+                                    <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="20.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="step = " />
+                                          <AbusedTextField fx:id="step3TextField" prefHeight="26.0" prefWidth="84.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="114.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="p0 = " />
+                                          <AbusedTextField fx:id="p0TextField" prefHeight="26.0" prefWidth="84.0" />
+                                       </children>
+                                    </HBox>
+                                    <Button fx:id="calcButton3" mnemonicParsing="false" text="calculate" />
                                  </children>
                               </VBox>
-                              <AbusedTextArea fx:id="formulaBox" />
+                              <AbusedTextArea fx:id="formulaBox" prefHeight="224.0" prefWidth="399.0" />
                               <Calculator>
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Calculator>
+                              <LatexLabel fx:id="latexLabel3" latex="\\LaTeX" prefHeight="224.0" prefWidth="459.0" />
                            </children>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </HBox>
-                        <Label text="answer" />
+                        <Label fx:id="ans3Label" prefHeight="236.0" prefWidth="47.0" text="answer" />
                      </children>
                   </VBox>
                </content>

@@ -11,8 +11,8 @@ import matlabcontrol.MatlabProxyFactoryOptions;
  */
 public class MatlabConnection {
 
-    String rootPath;
-    MatlabProxy proxy;
+    public String rootPath;
+    public MatlabProxy proxy;
 
     public MatlabConnection() {
         rootPath = null;
@@ -71,7 +71,7 @@ public class MatlabConnection {
         return res;
     }
 
-    private void cd(String dir) throws MatlabInvocationException {
+    public void cd(String dir) throws MatlabInvocationException {
         this.eval("cd " + dir);
     }
 

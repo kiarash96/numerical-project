@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import matlabcontrol.MatlabInvocationException;
 import project.LatexParser;
@@ -32,6 +33,12 @@ public class ChapterTwoView {
     @FXML Button calcButton2;
     @FXML Label ans2Label;
 
+    // third pane
+    @FXML TextField nTextField, step3TextField, p0TextField;
+    @FXML TextArea formulaBox;
+    @FXML Button calcButton3;
+    @FXML LatexLabel latexLabel3;
+    @FXML Label ans3Label;
 
     MatlabConnection connection;
 
@@ -62,7 +69,23 @@ public class ChapterTwoView {
                 doNewtonRaphson();
         }));
 
+
+        fn2TextField.textProperty().addListener(((observable, oldValue, newValue) -> {
+            latexLabel2.setLatex(parser.latex(fn2TextField.getText()));
+        }));
         calcButton2.setOnAction((event) -> doFixedPoint());
+
+
+        formulaBox.textProperty().addListener(((observable, oldValue, newValue) -> {
+            latexLabel3.setLatex(parser.latex(formulaBox.getText().replace("\n", "\\\\")));
+        }));
+        calcButton3.setOnAction((event) -> {
+            try {
+                doGNR();
+            } catch (MatlabInvocationException e) {
+                new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage()).show();
+            }
+        });
     }
 
     private void doType1(String method) {
@@ -157,6 +180,53 @@ public class ChapterTwoView {
             for (int i = 0; i < roots.length; i ++)
                 ans.append((i == 0 ? "" : " -> ") + roots[i]);
             ans2Label.setText(ans.toString());
+        }
+    }
+
+    private void doGNR() throws MatlabInvocationException {
+        try {
+            connection.cd("chapter-2");
+            int n = Integer.parseInt(nTextField.getText());
+            int j = 1;
+            String cmd = "f = {";
+            for (String line : formulaBox.getText().split("\n")) {
+                StringBuilder vstr = new StringBuilder("@(a0");
+                for (int i = 1; i <= n; i ++)
+                    vstr.append(",a" + i);
+                vstr.append(") ").append(line);
+                cmd += "str2func('" + vstr.toString() + "') ";
+            }
+            cmd += "};";
+            System.err.println(cmd);
+            connection.eval(cmd);
+
+            Object[] res = connection.proxy.returningEval("GNR(f, " + n + ", "
+                    + "[" + p0TextField.getText() + "], "
+                    + step3TextField.getText() + ", 0.01);", 4);
+
+            double[] roots = (double[]) res[0];
+            double[] values = (double[]) res[1];
+            String message = (String) res[2];
+            double[] fail = (double[]) res[3];
+
+            if (fail[0] == 1)
+                ans3Label.setText(message);
+            else {
+                StringBuilder ans = new StringBuilder("");
+                for (int i = 0; i < roots.length; i ++) {
+                    if (i > 0)
+                        ans.append(" -> ");
+                    ans.append("(" + roots[i ++]);
+                    for (j = 1; j <= n - 1; j ++)
+                        ans.append(", ").append(roots[i ++]);
+                    i --;
+                    ans.append(")");
+                }
+                ans3Label.setText(ans.toString());
+            }
+        }
+        finally {
+            connection.cd(connection.rootPath);
         }
     }
 }
