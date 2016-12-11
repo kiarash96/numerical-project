@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
-import javafx.scene.text.Font;
 
 /**
  * Created by kiarash on 12/7/16.
@@ -18,7 +17,7 @@ public class LatexLabel extends Control {
 
     public LatexLabel() {
         latex = new SimpleStringProperty("\\LaTeX");
-        fontSize = new SimpleDoubleProperty(Font.getDefault().getSize());
+        fontSize = new SimpleDoubleProperty(24);
     }
 
     @Override
