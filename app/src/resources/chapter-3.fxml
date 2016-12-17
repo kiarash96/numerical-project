@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import project.controls.AbusedTextArea?>
-<?import project.controls.AbusedTextField?>
-<?import project.controls.CalculatedTitledPane?>
-<?import project.controls.Calculator?>
-<?import project.controls.LatexLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import project.controls.AbusedTextArea?>
+<?import project.controls.AbusedTextField?>
+<?import project.controls.CalculatedTitledPane?>
+<?import project.controls.Calculator?>
+<?import project.controls.LatexLabel?>
 
-<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="810.0" text="Chapter Tree" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="810.0" text="Chapter Tree" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <Accordion>
          <panes>
@@ -76,26 +78,10 @@
             </CalculatedTitledPane>
             <CalculatedTitledPane fx:id="curveFittingPanel" text="curve fitting">
                <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <VBox prefHeight="100.0" prefWidth="232.0">
-                                 <children>
-                                    <HBox prefHeight="58.0" prefWidth="131.0">
-                                       <children>
-                                          <Label prefHeight="25.0" prefWidth="127.0" text="number on points" />
-                                          <AbusedTextField fx:id="curveFittingNumberOfpointsEntry" prefHeight="26.0" prefWidth="96.0" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <Label prefHeight="25.0" prefWidth="48.0" text="f(x) = " />
-                                          <AbusedTextField fx:id="functionType" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
                               <Label prefHeight="25.0" prefWidth="100.0" text="points as (x,y)">
                                  <HBox.margin>
                                     <Insets left="30.0" right="10.0" />
@@ -107,7 +93,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                                  <children>
-                                    <ChoiceBox prefWidth="150.0">
+                                    <ChoiceBox fx:id="cfFuncType" prefWidth="150.0">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                                        </VBox.margin>
@@ -121,7 +107,6 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <LatexLabel fx:id="curveFittingFunctionLatex" />
                         <HBox prefHeight="40.0" prefWidth="786.0">
                            <children>
                               <Label prefHeight="19.0" prefWidth="14.0" text="f(" />
@@ -136,6 +121,12 @@
                            </children>
                         </HBox>
                         <Calculator fx:id="curveFittingCalc" />
+                        <Label fx:id="cfAnswer" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Label" />
+                        <StackPane fx:id="cfPlotPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                           <children>
+                              <ImageView fx:id="cfPlotView" fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </StackPane>
                      </children>
                   </VBox>
                </content>

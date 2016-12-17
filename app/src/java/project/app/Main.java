@@ -70,10 +70,10 @@ public class Main extends Application {
         ch2controller.init(connection);
 
         FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/chapter-3.fxml"));
-        //ChapterThreeView ch3Controller = new ChapterThreeView();
-        //loader3.setController(ch3Controller);
+        ChapterThreeView ch3Controller = new ChapterThreeView();
+        loader3.setController(ch3Controller);
         TitledPane root3 = loader3.load();
-        //ch3Controller.init(connection);
+        ch3Controller.init(connection);
 
         Accordion accordion = new Accordion();
         accordion.getPanes().addAll(root1, root2, root3);
