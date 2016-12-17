@@ -1,4 +1,17 @@
 function output = errorPropagationWithValue(expression, a, b, c, d, e, f, da, db,dc,dd, de, df)
+disp(a)
+disp(b)
+disp(c)
+disp(d)
+disp(e)
+disp(f)
+disp(da)
+disp(db)
+disp(dc)
+disp(dd)
+disp(de)
+disp(df)
+
 format long;
 numbers = a;
 errors= a;
@@ -124,5 +137,5 @@ while(i <= n)
         
     end
 end
-output = numbersString;
+output = numbersString
 end
