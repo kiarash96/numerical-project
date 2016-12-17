@@ -125,7 +125,8 @@ public class ChapterTwoView {
     private void doNewtonRaphson() {
         MatlabStruct args = new MatlabStruct(
                 new MatlabStruct.Pair<>("func", fn1TextField.getText()),
-                new MatlabStruct.Pair<>("p0", Double.parseDouble(lowTextField.getText())),
+                new MatlabStruct.Pair<>("p0",
+                        (Double.parseDouble(highTextField.getText()) - Double.parseDouble(lowTextField.getText())) / 2),
                 new MatlabStruct.Pair<>("step", Double.parseDouble(steps1TextField.getText())),
                 new MatlabStruct.Pair<>("tol", 0.01)
         );
