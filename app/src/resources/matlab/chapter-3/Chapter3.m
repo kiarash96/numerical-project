@@ -3,6 +3,7 @@ format long
   X = str2double(X1);
   Y = str2double(Y1);
   x = str2double(x1);
+  n1 = length(X);
   n2 = length(Y);
   flag = 1;
   if (n1 ~= n2)

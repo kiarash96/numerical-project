@@ -52,7 +52,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(box));
         primaryStage.show();*/
 
-        MatlabConnection connection = new MatlabConnection();
+        /*MatlabConnection connection = new MatlabConnection();
         connection.open();
         connection.setRootPath(getClass().getResource("/matlab").getPath());
         primaryStage.setOnCloseRequest((event) -> connection.close());
@@ -61,7 +61,7 @@ public class Main extends Application {
         ChapterOneView ch1Controller = new ChapterOneView();
         loader1.setController(ch1Controller);
         TitledPane root1 = loader1.load();
-        ch1Controller.init(connection);
+        ch1Controller.init(connection);*/
 
 /*
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/chapter-2.fxml"));
@@ -71,15 +71,19 @@ public class Main extends Application {
         ch2controller.init(connection);
 */
 
-        /*FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/chapter-3.fxml"));
+        MatlabConnection connection = new MatlabConnection();
+        connection.open();
+        connection.setRootPath(getClass().getResource("/matlab").getPath());
+        primaryStage.setOnCloseRequest((event) -> connection.close());
+        FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/chapter-3.fxml"));
         ChapterThreeView ch3Controller = new ChapterThreeView();
         loader3.setController(ch3Controller);
         TitledPane root3 = loader3.load();
-        ch3Controller.init(connection);*/
+        ch3Controller.init(connection);
 
         Accordion accordion = new Accordion();
-        accordion.getPanes().addAll(root1);
-        accordion.setExpandedPane(root1);
+        accordion.getPanes().addAll(root3);
+        accordion.setExpandedPane(root3);
 
         primaryStage.setTitle("Numerical Methods Project");
         primaryStage.setScene(new Scene(accordion));
