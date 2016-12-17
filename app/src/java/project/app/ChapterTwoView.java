@@ -156,7 +156,7 @@ public class ChapterTwoView {
 
     private void doFixedPoint() {
         MatlabStruct args = new MatlabStruct(
-                new MatlabStruct.Pair<>("func", fn2TextField.getText()),
+                new MatlabStruct.Pair<>("func", fn2TextField.getText() + " + x"),
                 new MatlabStruct.Pair<>("p0", Double.parseDouble(x0TextField.getText())),
                 new MatlabStruct.Pair<>("step", Double.parseDouble(steps2TextField.getText()))
         );
