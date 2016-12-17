@@ -63,22 +63,20 @@ public class Main extends Application {
         TitledPane root1 = loader1.load();
         ch1Controller.init(connection);
 
-/*
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/chapter-2.fxml"));
         ChapterTwoView ch2controller = new ChapterTwoView();
         loader.setController(ch2controller);
         TitledPane root2 = loader.load();
         ch2controller.init(connection);
-*/
 
-        /*FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/chapter-3.fxml"));
-        ChapterThreeView ch3Controller = new ChapterThreeView();
-        loader3.setController(ch3Controller);
+        FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/chapter-3.fxml"));
+        //ChapterThreeView ch3Controller = new ChapterThreeView();
+        //loader3.setController(ch3Controller);
         TitledPane root3 = loader3.load();
-        ch3Controller.init(connection);*/
+        //ch3Controller.init(connection);
 
         Accordion accordion = new Accordion();
-        accordion.getPanes().addAll(root1);
+        accordion.getPanes().addAll(root1, root2, root3);
         accordion.setExpandedPane(root1);
 
         primaryStage.setTitle("Numerical Methods Project");
