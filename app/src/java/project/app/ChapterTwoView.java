@@ -7,11 +7,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import matlabcontrol.MatlabInvocationException;
 import project.LatexParser;
 import project.app.utility.MatlabConnection;
 import project.app.utility.MatlabStruct;
-import project.controls.AbusedTextField;
 import project.controls.LatexLabel;
 
 /**
@@ -21,11 +23,13 @@ public class ChapterTwoView {
 
     LatexParser parser = new LatexParser();
 
-    @FXML AbusedTextField fn1TextField, lowTextField, highTextField, steps1TextField;
+    @FXML TitledPane otherMethodsPane;
+    @FXML TextField fn1TextField, lowTextField, highTextField, steps1TextField;
     @FXML ComboBox<String> methodChoice;
     @FXML Button calc1Button;
     @FXML Label ans1Label;
     @FXML LatexLabel latexLabel1;
+    @FXML ImageView plotView1;
 
     // second pane
     @FXML TextField fn2TextField, x0TextField, steps2TextField;
@@ -67,8 +71,9 @@ public class ChapterTwoView {
                 doType1("secant");
             else if (methodChoice.getValue().equals("Newton-Raphson"))
                 doNewtonRaphson();
-        }));
 
+        }));
+        plotView1.fitWidthProperty().bind(otherMethodsPane.widthProperty().divide(2));
 
         fn2TextField.textProperty().addListener(((observable, oldValue, newValue) -> {
             latexLabel2.setLatex(parser.latex(fn2TextField.getText()));
@@ -119,6 +124,12 @@ public class ChapterTwoView {
             for (int i = 0; i < roots.length; i ++)
                 ans.append((i == 0 ? "" : " -> ") + roots[i]);
             ans1Label.setText(ans.toString());
+        }
+
+        try {
+            plotReload(roots, values);
+        } catch (MatlabInvocationException e) {
+            e.printStackTrace();
         }
     }
 
@@ -192,8 +203,8 @@ public class ChapterTwoView {
             String cmd = "f = {";
             for (String line : formulaBox.getText().split("\n")) {
                 StringBuilder vstr = new StringBuilder("@(a0");
-                for (int i = 1; i <= n; i ++)
-                    vstr.append(",a" + i);
+                for (int i = 2; i <= n; i ++)
+                    vstr.append(",a" + (i - 1));
                 vstr.append(") ").append(line);
                 cmd += "str2func('" + vstr.toString() + "') ";
             }
@@ -229,5 +240,16 @@ public class ChapterTwoView {
         finally {
             connection.cd(connection.rootPath);
         }
+    }
+
+    private void plotReload(Object roots, Object values) throws MatlabInvocationException {
+        MatlabStruct args = new MatlabStruct(
+                new MatlabStruct.Pair<>("roots", roots),
+                new MatlabStruct.Pair<>("values", values),
+                new MatlabStruct.Pair<>("func", fn1TextField.getText()),
+                new MatlabStruct.Pair<>("addr", getClass().getResource("/matlab").getPath() + "/plot.jpg")
+        );
+        connection.feval("chapter-2", "fig", args);
+        plotView1.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
     }
 }

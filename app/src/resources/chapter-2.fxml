@@ -5,7 +5,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -23,84 +25,50 @@
    <content>
       <Accordion>
          <panes>
-            <CalculatedTitledPane text="other methods">
+            <TitledPane fx:id="otherMethodsPane" text="Other methods">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <center>
-                              <Label fx:id="ans1Label" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="108.0" text="answer" textAlignment="CENTER" BorderPane.alignment="CENTER" />
-                           </center>
-                        </BorderPane>
-                     </center>
-                     <top>
-                        <VBox prefHeight="356.0" prefWidth="1076.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox prefHeight="190.0" prefWidth="1076.0">
+                              <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
                                  <children>
-                                    <BorderPane prefHeight="173.0" prefWidth="592.0">
-                                       <left>
-                                          <Label prefHeight="24.0" prefWidth="115.0" text="function : f(x) = " BorderPane.alignment="CENTER" />
-                                       </left>
-                                       <bottom>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                             <children>
-                                                <Pane prefHeight="100.0" prefWidth="119.0" />
-                                                <LatexLabel fx:id="latexLabel1" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                          </HBox>
-                                       </bottom>
-                                       <right>
-                                          <AbusedTextField fx:id="fn1TextField" prefHeight="26.0" prefWidth="452.0" BorderPane.alignment="CENTER" />
-                                       </right>
-                                       <HBox.margin>
-                                          <Insets right="30.0" />
-                                       </HBox.margin>
-                                    </BorderPane>
-                                    <Calculator />
+                                    <LatexLabel fontSize="20.0" latex="f(x)=" />
+                                    <TextField fx:id="fn1TextField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0">
-                                 <left>
-                                    <GridPane prefHeight="183.0" prefWidth="371.0" BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="99.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="136.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="102.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Label prefHeight="31.0" prefWidth="95.0" text="interval's start" />
-                                          <Label prefHeight="31.0" prefWidth="95.0" text="interval's end" GridPane.rowIndex="1" />
-                                          <Label prefHeight="52.0" prefWidth="100.0" text="steps" GridPane.rowIndex="2" />
-                                          <Button fx:id="calc1Button" mnemonicParsing="false" prefHeight="61.0" prefWidth="130.0" text="calculate" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                             <GridPane.margin>
-                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                                             </GridPane.margin>
-                                          </Button>
-                                          <AbusedTextField fx:id="lowTextField" GridPane.columnIndex="1" />
-                                          <AbusedTextField fx:id="highTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <AbusedTextField fx:id="steps1TextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Label layoutX="10.0" layoutY="18.0" prefHeight="31.0" prefWidth="95.0" text="method" GridPane.rowIndex="3" />
-                                          <ComboBox fx:id="methodChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                       </children>
-                                    </GridPane>
-                                 </left>
-                                 <right>
-                                    <Pane prefHeight="74.0" prefWidth="211.0" BorderPane.alignment="CENTER" />
-                                 </right>
-                              </BorderPane>
+                              <LatexLabel fx:id="latexLabel1" fontSize="22.0" latex="f(x)" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="Interval Start:" />
+                                    <Label text="Interval End:" GridPane.rowIndex="1" />
+                                    <Label text="Steps:" GridPane.rowIndex="2" />
+                                    <Label text="Method:" GridPane.rowIndex="3" />
+                                    <TextField fx:id="lowTextField" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                                    <TextField fx:id="highTextField" layoutX="110.0" layoutY="12.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="steps1TextField" layoutX="110.0" layoutY="42.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="methodChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                              <Button fx:id="calc1Button" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Calculate" textAlignment="CENTER" />
+                              <Label fx:id="ans1Label" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Answer" textAlignment="CENTER" />
                            </children>
                         </VBox>
-                     </top>
-                  </BorderPane>
+                        <ImageView fx:id="plotView1" fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
                </content>
-            </CalculatedTitledPane>
+            </TitledPane>
             <CalculatedTitledPane text="fixed point">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">

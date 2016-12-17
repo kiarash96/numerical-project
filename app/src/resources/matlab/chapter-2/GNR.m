@@ -34,7 +34,7 @@ function [ roots, valueInRoots ,message, fail] = GNR(funcs,n,p0, step, tol)
             valueInRoots(j,i) = subs(temp, vars, p0)
         end
         i=i+1; 
-    end 
+    end
 
     
 end
