@@ -18,8 +18,6 @@ import project.controls.CalculatedTitledPane;
 import project.controls.Calculator;
 import project.controls.LatexLabel;
 
-import java.util.ArrayList;
-
 /**
  * Created by kiarash on 12/7/16.
  */
@@ -41,7 +39,7 @@ public class ChapterThreeView {
     Calculator interpolationsCalc, curveFittingCalc;
     @FXML
     ChoiceBox interpolationType;
-    int intepolationState;
+    int interpolationState;
     MatlabConnection connection;
 
     public ChapterThreeView() {
@@ -49,12 +47,12 @@ public class ChapterThreeView {
 
     public void init(MatlabConnection connection) {
         this.connection = connection;
-        interpolationType.setItems(FXCollections.observableArrayList("Lagrange", "Newton Divided Differences"));
+        interpolationType.setItems(FXCollections.observableArrayList("Lagrange", "Newton Divided Differences", "newtonForwardBackward"));
         interpolationType.getSelectionModel().selectedIndexProperty()
                 .addListener(new ChangeListener<Number>() {
                     public void changed(ObservableValue ov, Number value, Number new_value) {
-                        intepolationState = new_value.intValue() + 1;
-                        System.out.println(intepolationState);
+                        interpolationState = new_value.intValue() + 1;
+                        System.out.println(interpolationState);
                     }
                 });
         interpolationsValueCalculateButton.setOnAction((event -> {
@@ -86,11 +84,18 @@ public class ChapterThreeView {
             MatlabStruct matlabStruct = new MatlabStruct(new MatlabStruct.Pair<String, Object>("", "Xs"),
                     new MatlabStruct.Pair<String, Object>("", "Ys"),
                     new MatlabStruct.Pair<String, Object>("", x),
-                    new MatlabStruct.Pair<String, Object>("", 0),
-                    new MatlabStruct.Pair<String, Object>("", intepolationState),
-                    new MatlabStruct.Pair<String, Object>("", "6"));
+                    new MatlabStruct.Pair<String, Object>("", "10"));
             try {
-                MatlabStruct outPutStruct = connection.feval("chapter-3", "Chapter3", matlabStruct, "answer", "flag");
+                MatlabStruct outPutStruct = new MatlabStruct();
+                if(interpolationState == 1){
+                    outPutStruct = connection.feval("chapter-3", "Lagrange", matlabStruct, "answer");
+                }
+                if(interpolationState == 2){
+                    outPutStruct = connection.feval("chapter-3", "newtonDividedDifference", matlabStruct, "answer");
+                }
+                if(interpolationState == 3){
+                    outPutStruct = connection.feval("chapter-3", "newtonForwardBackward", matlabStruct, "answer");
+                }
                 double  answer = outPutStruct.get("answer");
                 interpolationsAnswerToArgument.setText(Double.toString(answer));
             } catch (MatlabInvocationException e) {

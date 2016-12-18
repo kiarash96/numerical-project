@@ -1,4 +1,4 @@
-function [ flag, result ] = Chapter3( X1, Y1 , x1 , iOrC ,type,  m1 )
+function [ flag, result ] = Chapter3( X1, Y1 , x1 , iOrC ,type,  m )
 format long
   X = str2double(X1);
   Y = str2double(Y1);
