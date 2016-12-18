@@ -76,14 +76,17 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <BorderPane fx:id="fixedPointBorderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                            <top>
                               <Label fx:id="ans2Label" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="108.0" text="answer" textAlignment="CENTER" BorderPane.alignment="CENTER" />
                            </top>
+                           <center>
+                              <ImageView fx:id="plotView2" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                           </center>
                         </BorderPane>
                      </center>
                      <top>
-                        <HBox prefHeight="216.0" prefWidth="1076.0" BorderPane.alignment="CENTER">
+                        <HBox maxHeight="1.7976931348623157E308" prefHeight="202.0" prefWidth="1076.0" BorderPane.alignment="CENTER">
                            <children>
                               <VBox prefHeight="136.0" prefWidth="551.0">
                                  <children>

@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import matlabcontrol.MatlabInvocationException;
 import project.LatexParser;
 import project.app.utility.MatlabConnection;
@@ -23,13 +24,16 @@ public class ChapterTwoView {
 
     LatexParser parser = new LatexParser();
 
+
+    @FXML BorderPane fixedPointBorderPane;
     @FXML TitledPane otherMethodsPane;
     @FXML TextField fn1TextField, lowTextField, highTextField, steps1TextField;
     @FXML ComboBox<String> methodChoice;
     @FXML Button calc1Button;
     @FXML Label ans1Label;
     @FXML LatexLabel latexLabel1;
-    @FXML ImageView plotView1;
+
+    @FXML ImageView plotView1, plotView2;
 
     // second pane
     @FXML TextField fn2TextField, x0TextField, steps2TextField;
@@ -80,6 +84,7 @@ public class ChapterTwoView {
         }));
         calcButton2.setOnAction((event) -> doFixedPoint());
 
+        plotView2.fitWidthProperty().bind(fixedPointBorderPane.widthProperty());
 
         formulaBox.textProperty().addListener(((observable, oldValue, newValue) -> {
             latexLabel3.setLatex(parser.latex(formulaBox.getText().replace("\n", "\\\\")));
@@ -124,13 +129,14 @@ public class ChapterTwoView {
             for (int i = 0; i < roots.length; i ++)
                 ans.append((i == 0 ? "" : " -> ") + roots[i]);
             ans1Label.setText(ans.toString());
+
+            try {
+                plotReload(roots, values, plotView1);
+            } catch (MatlabInvocationException e) {
+                e.printStackTrace();
+            }
         }
 
-        try {
-            plotReload(roots, values);
-        } catch (MatlabInvocationException e) {
-            e.printStackTrace();
-        }
     }
 
     private void doNewtonRaphson() {
@@ -162,12 +168,20 @@ public class ChapterTwoView {
             for (int i = 0; i < roots.length; i ++)
                 ans.append((i == 0 ? "" : " -> ") + roots[i]);
             ans1Label.setText(ans.toString());
+
+
+            try {
+                plotReload(roots, values, plotView1);
+            } catch (MatlabInvocationException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private void doFixedPoint() {
+        String g = fn2TextField.getText() + " + x";
         MatlabStruct args = new MatlabStruct(
-                new MatlabStruct.Pair<>("func", fn2TextField.getText() + " + x"),
+                new MatlabStruct.Pair<>("func", g),
                 new MatlabStruct.Pair<>("p0", Double.parseDouble(x0TextField.getText())),
                 new MatlabStruct.Pair<>("step", Double.parseDouble(steps2TextField.getText()))
         );
@@ -192,6 +206,12 @@ public class ChapterTwoView {
             for (int i = 0; i < roots.length; i ++)
                 ans.append((i == 0 ? "" : " -> ") + roots[i]);
             ans2Label.setText(ans.toString());
+
+            try {
+                plotReload(roots, values, plotView2);
+            } catch (MatlabInvocationException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -242,14 +262,16 @@ public class ChapterTwoView {
         }
     }
 
-    private void plotReload(Object roots, Object values) throws MatlabInvocationException {
+    private void plotReload(Object roots, Object values, ImageView plotView) throws MatlabInvocationException {
         MatlabStruct args = new MatlabStruct(
                 new MatlabStruct.Pair<>("roots", roots),
                 new MatlabStruct.Pair<>("values", values),
-                new MatlabStruct.Pair<>("func", fn1TextField.getText()),
+                (plotView == plotView1 ?
+                        new MatlabStruct.Pair<>("func", fn1TextField.getText()) :
+                        new MatlabStruct.Pair<>("func", fn2TextField.getText())),
                 new MatlabStruct.Pair<>("addr", getClass().getResource("/matlab").getPath() + "/plot.jpg")
         );
         connection.feval("chapter-2", "fig", args);
-        plotView1.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
+        plotView.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
     }
 }
