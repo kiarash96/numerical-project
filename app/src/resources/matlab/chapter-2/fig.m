@@ -11,5 +11,12 @@ hold on;
 scatter(roots(1:n-1), values(1:n-1));
 hold on;
 scatter( roots(n), values(n));
+
+ax = gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+
+ax.Box = 'off';
+
 saveas(h,address, 'jpg');
 end
