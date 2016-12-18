@@ -6,7 +6,7 @@ if(type == 1)
     [a1 , b1] = linearCurveFitting(X1 , Y , m );
     a = exp(a1);
     b = b1 ;
-    result = strcat(sprintf('%0.5f',double(b)) , ' + 2.7183 ^ ( ' ,  sprintf('%0.5f',double(a)) , ' * x )');
+    result = strcat(sprintf('%0.5f',double(a)) , ' * 2.7183 ^ ( ' ,  sprintf('%0.5f',double(b)) , ' * x )');
      %figure
      % plot(X1 , Y);
      % title('Exponential Curve Fitting');

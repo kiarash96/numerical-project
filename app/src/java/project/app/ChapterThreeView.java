@@ -58,10 +58,10 @@ public class ChapterThreeView {
 
         cfPlotView.fitHeightProperty().bind(curveFittingPanel.heightProperty().divide(2));
 
-        cfFuncType.getItems().addAll("a * e^x + b", "a * log(x) + b", "a * 1/x + b", "1 / (ax + b)");
+        cfFuncType.getItems().addAll("a * e^(b * x)", "a * log(x) + b", "a * 1/x + b", "1 / (ax + b)", "ax + b");
 
         curveFittingFunctionCalculateButton.setOnAction((event) -> {
-            if (cfFuncType.getValue().equals("a * e^x + b"))
+            if (cfFuncType.getValue().equals("a * e^(b * x)"))
                 doCurveFitting(1);
             else if (cfFuncType.getValue().equals("a * log(x) + b"))
                 doCurveFitting(2);
@@ -69,6 +69,8 @@ public class ChapterThreeView {
                 doCurveFitting(3);
             else if (cfFuncType.getValue().equals("1 / (ax + b)"))
                 doCurveFitting(4);
+            else if (cfFuncType.getValue().equals("ax + b"))
+                doCurveFitting(5);
         });
     }
 
@@ -89,23 +91,40 @@ public class ChapterThreeView {
         for (int i = 0; i < ys.length; i ++)
             ys[i] = Ys.get(i);
 
-        MatlabStruct args = new MatlabStruct(
-                new MatlabStruct.Pair<>("X1", xs),
-                new MatlabStruct.Pair<>("Y1", ys),
-                new MatlabStruct.Pair<>("m", 10),
-                new MatlabStruct.Pair<>("type", type)
-        );
+        String result = "";
+        if (type <= 4) {
+            MatlabStruct args = new MatlabStruct(
+                    new MatlabStruct.Pair<>("X1", xs),
+                    new MatlabStruct.Pair<>("Y1", ys),
+                    new MatlabStruct.Pair<>("m", 10),
+                    new MatlabStruct.Pair<>("type", type)
+            );
 
-        MatlabStruct res = null;
-        try {
-            res = connection.feval("chapter-3", "CurveFitting", args, "flag", "result");
-        } catch (MatlabInvocationException e) {
-            e.printStackTrace();
+            MatlabStruct res = null;
+            try {
+                res = connection.feval("chapter-3", "CurveFitting", args, "flag", "result");
+            } catch (MatlabInvocationException e) {
+                e.printStackTrace();
+            }
+
+            result = res.get("result");
+        } else {
+            MatlabStruct args = new MatlabStruct(
+                    new MatlabStruct.Pair<>("X1", xs),
+                    new MatlabStruct.Pair<>("Y1", ys),
+                    new MatlabStruct.Pair<>("m", 10)
+            );
+
+            try {
+                MatlabStruct res = connection.feval("chapter-3", "linearCurveFitting", args, "a", "b");
+                double[] a = res.get("a"), b = res.get("b");
+                result = a[0] + " * x + " + b[0];
+            } catch (MatlabInvocationException e) {
+                e.printStackTrace();
+            }
         }
 
-        String result = res.get("result");
         cfAnswer.setText(result);
-
         getPlot(xs, ys, result);
     }
 
@@ -122,7 +141,6 @@ public class ChapterThreeView {
         } catch (MatlabInvocationException e) {
             e.printStackTrace();
         }
-
 
         cfPlotView.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
     }
