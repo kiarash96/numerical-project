@@ -33,6 +33,11 @@ if(step==-1)
     step = 100;
 end
 while i <= step
+    if (df(p0) == 0)
+        fail = 1;
+        message= 'Method fails because value of derivative is zero in some points.';
+        return;
+    end
     p = p0 - (f(p0)/df(p0));          %Newton-Raphson method
      
     roots(i)=p;
