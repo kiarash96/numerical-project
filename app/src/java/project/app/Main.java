@@ -75,9 +75,28 @@ public class Main extends Application {
         TitledPane root3 = loader3.load();
         ch3Controller.init(connection);
 
+
+        FXMLLoader loader4 = new FXMLLoader(getClass().getResource("/chapter-4.fxml"));
+        ChapterFourController ch4Controller = new ChapterFourController();
+        loader4.setController(ch4Controller);
+        TitledPane root4 = loader4.load();
+        ch4Controller.init(connection);
+
+        FXMLLoader loader5 = new FXMLLoader(getClass().getResource("/chapter-5.fxml"));
+        ChapterFiveController ch5Controller = new ChapterFiveController();
+        loader5.setController(ch5Controller);
+        TitledPane root5 = loader5.load();
+        ch5Controller.init(connection);
+
+        FXMLLoader loader6 = new FXMLLoader(getClass().getResource("/chapter-6.fxml"));
+        ChapterSixController ch6Controller = new ChapterSixController();
+        loader6.setController(ch6Controller);
+        TitledPane root6 = loader6.load();
+        ch6Controller.init(connection);
+
         Accordion accordion = new Accordion();
-        accordion.getPanes().addAll(root1, root2, root3);
-        accordion.setExpandedPane(root1);
+        accordion.getPanes().addAll(root1, root2, root3, root4, root5, root6);
+        primaryStage.setHeight(800);
 
         primaryStage.setTitle("Numerical Methods Project");
         primaryStage.setScene(new Scene(accordion));
