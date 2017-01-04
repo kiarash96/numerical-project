@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import fxClasses.CalculatedTitledPane?>
-<?import fxClasses.LatexLabel?>
+<?import project.controls.CalculatedTitledPane?>
+<?import project.controls.LatexLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
