@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import project.controls.AbusedTextField?>
 <?import project.controls.LatexLabel?>
-<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="chapter5" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Chapter Five" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>

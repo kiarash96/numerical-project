@@ -96,7 +96,7 @@ public class Main extends Application {
 
         Accordion accordion = new Accordion();
         accordion.getPanes().addAll(root1, root2, root3, root4, root5, root6);
-        accordion.setExpandedPane(root1);
+        primaryStage.setHeight(800);
 
         primaryStage.setTitle("Numerical Methods Project");
         primaryStage.setScene(new Scene(accordion));
