@@ -25,6 +25,8 @@ elseif (method == 2)
     else
         intValue = simpsonThreeEight(xs, ys, h);
     end
+elseif (method == 5)
+    intValue = customSimpson(xs, ys, h);
 end
 
 % create result string if no errors occured.
