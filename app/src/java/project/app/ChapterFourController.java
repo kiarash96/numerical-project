@@ -71,10 +71,7 @@ public class ChapterFourController {
         if (error[0] == 0)
             intPlotView.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
 
-        if (intMethodType.getSelectionModel().getSelectedIndex() <= 2 || intMethodType.getSelectionModel().getSelectedIndex() == 5) {
-            String result = res.get("result");
-            intAnswerLatexLabel.setLatex(result);
-        } else if (intMethodType.getValue().equals("Romberg")) {
+        if (intMethodType.getValue().equals("Romberg")) {
             double[] result = res.get("result");
             // TODO: Create latex table from result
             double[][] table = new double[n][n + 1];
@@ -82,6 +79,9 @@ public class ChapterFourController {
             for (int i = 0; i < result.length; i ++)
                 table[i % n][i / n] = result[i];
             intAnswerLatexLabel.setLatex(ChapterSixController.makeTable(table));
+        } else {
+            String result = res.get("result");
+            intAnswerLatexLabel.setLatex(result);
         }
     }
 

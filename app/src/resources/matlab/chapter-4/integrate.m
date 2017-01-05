@@ -36,7 +36,8 @@ if (method <= 2 || method == 5)
 elseif (method == 3)
     result = romberg(f, a, b, n);
 elseif (method == 4)
-
+    [xs, ws, intValue] = gaussLegendre(func, a, b, n);
+    result = strcat(mat2str(xs), '\\', mat2str(ws), '\\', num2str(intValue));
 end
 
 % plot
