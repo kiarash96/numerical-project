@@ -27,6 +27,8 @@ elseif (method == 2)
     end
 elseif (method == 5)
     intValue = customSimpson(xs, ys, h);
+elseif (method == 3)
+    result = romberg(f, a, b, n);
 end
 
 % create result string if no errors occured.

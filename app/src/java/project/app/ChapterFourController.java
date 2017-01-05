@@ -51,14 +51,23 @@ public class ChapterFourController {
         );
         MatlabStruct res = null;
         try {
-            res = connection.feval("chapter-4", "integrate", args, "result");
+            res = connection.feval("chapter-4", "integrate", args, "result", "error");
         } catch (MatlabInvocationException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
-        String result = (String) res.get("result");
-        intAnswerLatexLabel.setLatex(result);
-        intPlotView.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
+        double[] error = (double[]) res.get("error");
+
+        if (error[0] == 0)
+            intPlotView.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
+
+        if (intMethodType.getSelectionModel().getSelectedIndex() <= 2 || intMethodType.getSelectionModel().getSelectedIndex() == 5) {
+            String result = (String) res.get("result");
+            intAnswerLatexLabel.setLatex(result);
+        } else if (intMethodType.getValue().equals("Romberg")) {
+            double[] result = (double[]) res.get("result");
+            // TODO: Create latex table from result
+        }
     }
 
     public void callDiff() {
