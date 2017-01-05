@@ -3,10 +3,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import matlabcontrol.MatlabInvocationException;
-import matlabcontrol.MatlabProxy;
 import project.app.utility.MatlabConnection;
 import project.app.utility.MatlabStruct;
 import project.controls.AbusedTextArea;
@@ -196,7 +196,7 @@ public class ChapterSixController {
         }));
     }
 
-    public String makeTable(double [][] input){
+    public static String makeTable(double [][] input){
         String output = new String("\\begin{bmatrix}\n");
         for (int i = 0; i < input.length; i++) {
             for (int j = 0; j < input[0].length; j++) {
@@ -210,7 +210,7 @@ public class ChapterSixController {
         output = output + "\\end{bmatrix}";
         return output;
     }
-    public String makeAugmentedTable(double [][] input, int numberOfVal){
+    public static String makeAugmentedTable(double [][] input, int numberOfVal){
         String temp = "";
         for (int i = 0; i < numberOfVal; i++) {
             temp = temp+"c";
@@ -229,7 +229,7 @@ public class ChapterSixController {
                 "        \\right]";
         return output;
     }
-    public String makeTable(double [] numbers){
+    public static String makeTable(double [] numbers){
         double [][] twoDim = new double[numbers.length][1];
         for (int i = 0; i < numbers.length; i++) {
             twoDim[i][0] = numbers[i];

@@ -41,6 +41,10 @@ public class ChapterFourController {
     }
 
     public void callIntegral() {
+        double start = Double.parseDouble(intStartTextField.getText()),
+                end = Double.parseDouble(intEndTextField.getText()),
+                h = Double.parseDouble(intHTextField.getText());
+        double n = (end - start) / h;
         MatlabStruct args = new MatlabStruct(
                 new MatlabStruct.Pair<>("f", intFunctionTextField.getText()),
                 new MatlabStruct.Pair<>("start", Double.parseDouble(intStartTextField.getText())),
@@ -67,6 +71,11 @@ public class ChapterFourController {
         } else if (intMethodType.getValue().equals("Romberg")) {
             double[] result = (double[]) res.get("result");
             // TODO: Create latex table from result
+            double[][] table = new double[(int)n][(int)n + 1];
+
+            for (int i = 0; i < result.length; i ++)
+                table[i % ((int) n)][i / ((int) n)] = result[i];
+            intAnswerLatexLabel.setLatex(ChapterSixController.makeTable(table));
         }
     }
 
