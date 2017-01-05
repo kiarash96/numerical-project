@@ -1,6 +1,6 @@
 function [ ansX , ansY ] = DE_RungeKutta( equation1 ,equation2 ,  iniX, iniY, iniT ,h , n )
-f = inline(equation1 , 'x' , 'y' , 't');
-g = inline(equation2 , 'x' , 'y' , 't');
+f = inline(equation1 , 'x' , 'y' , 'z');
+g = inline(equation2 , 'x' , 'y' , 'z');
 ansX(1) = iniX;
 ansY(1) = iniY;
 t(1)    = iniT;

@@ -1,6 +1,7 @@
 function [ ansX , ansY ] = chapter5( equation1 , equation2 , h , x0 , y0 ,t0 ,  method , step )
 %UNTITLED9 Summary of this function goes here
 %   Detailed explanation goes here
+method
 switch method
     case 1
         [ ansX , ansY ] = Taylor( equation1 , x0, y0 , h , step );
@@ -12,9 +13,9 @@ switch method
         [ ansX , ansY ] = Third_RungeKutta( equation1 , x0, y0, h , step );
     case 5
         [ ansX , ansY ] = Four_RungeKutta( equation1 , x0, y0, h , step );
-    case 7
+    case 6
         [ ansX , ansY ] = DE_Euler( equation1 ,equation2 ,  x0, y0, t0 ,h , step );
-    case 8
+    case 7
         [ ansX , ansY ] = DE_RungeKutta( equation1 ,equation2 ,  x0, y0, t0 ,h , step);
 end
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -13,25 +12,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import project.controls.AbusedTextField?>
 <?import project.controls.LatexLabel?>
-<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Chapter Five" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Chapter Five" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="353.0" prefWidth="340.0">
+            <VBox prefHeight="353.0" prefWidth="584.0">
                <children>
                   <GridPane prefHeight="106.0" prefWidth="340.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="53.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="287.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="59.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="248.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="287.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="72.0" minHeight="0.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="72.0" minHeight="0.0" prefHeight="48.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="f(x) = " />
-                        <AbusedTextField fx:id="functionTextField" prefHeight="26.0" prefWidth="286.0" GridPane.columnIndex="1" />
-                        <LatexLabel fx:id="functionLatexLabel" prefHeight="88.0" prefWidth="365.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <AbusedTextField fx:id="fTextField" prefHeight="26.0" prefWidth="286.0" GridPane.columnIndex="1" />
+                        <LatexLabel fx:id="functionLatexLabel" prefHeight="35.0" prefWidth="269.0" GridPane.columnIndex="2" />
+                        <LatexLabel fontSize="18.0" latex="\\frac{dy}{dx} = " />
+                        <LatexLabel fontSize="18.0" latex="\\frac{dz}{dx} = " layoutX="10.0" layoutY="10.0" GridPane.rowIndex="1" />
+                        <AbusedTextField fx:id="gTextField" layoutX="46.0" layoutY="26.0" prefHeight="26.0" prefWidth="286.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <LatexLabel fx:id="gLatexLabel" layoutX="317.0" layoutY="10.0" prefHeight="61.0" prefWidth="270.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane>
@@ -64,7 +68,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
-                              <LatexLabel latex="x0 = " />
+                              <Label text="x0 = " />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -78,7 +82,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
-                              <Label text="y'0 = " />
+                              <Label text="z0 = " />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -94,7 +98,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                         <AbusedTextField fx:id="hTextField" prefHeight="26.0" prefWidth="124.0" GridPane.columnIndex="1" />
                         <AbusedTextField prefHeight="26.0" prefWidth="126.0" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="x0TextField" />
-                        <AbusedTextField fx:id="deriativeTextField" prefHeight="26.0" prefWidth="122.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <AbusedTextField fx:id="z0TextField" prefHeight="26.0" prefWidth="122.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <AbusedTextField fx:id="nTextField" prefHeight="26.0" prefWidth="71.0" GridPane.columnIndex="3" />
                         <AbusedTextField fx:id="y0TextField" prefHeight="26.0" prefWidth="89.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <AbusedTextField fx:id="stepTextField" prefHeight="26.0" prefWidth="89.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
