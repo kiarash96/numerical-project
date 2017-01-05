@@ -10,7 +10,7 @@ function [fail, message,history , final ]=Jacobi(A, b, x0, t)
  history = zeros(m ,t);
  %check diagonally dominancy
  for i=1: m
-    if 2* abs(A(i,i)) < sum( B(i, :))
+    if 2* abs(A(i,i)) >= sum( B(i, :))
         fail = 1;
         message = 'Matrix of coefficiant is not diagonally dominant';
         return;
@@ -29,4 +29,8 @@ function [fail, message,history , final ]=Jacobi(A, b, x0, t)
      
  end
  final = x;
+ A
+x0
+ b
+ history = transpose(history)
  end
