@@ -3,6 +3,8 @@ fail =0;
 message = '';
 x =0;
 %defining history structure in this method
+disp('cramer');
+size(A)
 history = zeros( size(A, 2)+1, 1);
 history(1,1) = det(A);
 for i=1:size(A, 2)
