@@ -53,7 +53,7 @@
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                                        <children>
-                                          <Label text="h = " />
+                                          <Label fx:id="intHLabel" text="h = " />
                                           <AbusedTextField fx:id="intHTextField" prefHeight="26.0" prefWidth="64.0" />
                                        </children>
                                     </HBox>
