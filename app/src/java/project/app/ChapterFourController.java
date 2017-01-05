@@ -49,13 +49,15 @@ public class ChapterFourController {
                 new MatlabStruct.Pair<>("method", intMethodType.getSelectionModel().getSelectedIndex()),
                 new MatlabStruct.Pair<>("plotPath", getClass().getResource("/matlab").getPath() + "/plot.jpg")
         );
+        MatlabStruct res = null;
         try {
-            MatlabStruct res = connection.feval("chapter-4", "integral", args, "ans");
+            res = connection.feval("chapter-4", "integrate", args, "intValue");
         } catch (MatlabInvocationException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
-        intAnswerLatexLabel.setLatex(args.get("ans"));
+        double[] ans = res.get("intValue");
+        intAnswerLatexLabel.setLatex(String.valueOf(ans[0]));
         intPlotView.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
     }
 
