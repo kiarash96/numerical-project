@@ -16,36 +16,34 @@ if m< n
     return;
 end
 
-if det(A)=0
+if det(A)==0
     fail = 1;
     messsage = 'Det of matrix of coefficiants is zero. ';
 end
 
-if i = 1
+if i == 1
   [fail , message, history , final ] = Cramer(A,b);
 end
-if i = 2
+if i == 2
   [fail, message , history , final ] = GaussElim(A,b);
 end
 
-if i=3
+if i==3
   [fail, message,history , final ]=LU_DooLittle(A, b);
 end
 
-if i = 4
+if i == 4
   [fail, message,history , final ]=Cholesky(A, b);
 end
-if i = 5
+if i == 5
   %[fail, message,history , final ]=
 end
-if i = 6
+if i == 6
   [fail, message,history , final ]=Jacobi(A, b, x0, t);
 end
-if i = 7
+if i == 7
   [fail, message,history , final ]=GS(A, b, x0, t);
 end
 
 end
 
-
-end
