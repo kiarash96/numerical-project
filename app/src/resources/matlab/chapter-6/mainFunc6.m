@@ -1,35 +1,49 @@
-function [fail, message history, final] = mainFunc6(funcs,b, n)
+function [fail, message history, final] = mainFunc6(A,b, x0, t, i)
 %prepare error messages
 fail = 0;
-if size(funcs,1)> n
+message = '';
+history =0;
+final = 0;
+[m,n] = size(A);
+if m> n
     fail = 1;
-    messsage = 'You have entered more equations than number of unknowns. '
+    messsage = 'You have entered more equations than number of unknowns. ';
+    return;
 end
-if size(funcs,1)< n
+if m< n
     fail = 1;
-    messsage = 'You have entered less equations than number of unknowns. '
+    messsage = 'You have entered less equations than number of unknowns. ';
+    return;
 end
 
-%funcs are vector of anounymous functions
-for i=1:size(funcs, 1) %defining a0 to an
-  vars(i) = sym(strcat('a',num2str(i-1)));
-end
-A = zeros(size(funcs, 1), n);
-for i=1: size(funcs, 1) %constructiong coeff matrix
-   f = funcs(i);
-   for j=1 : n
-        c  = coeffs(f, vars(j));
-        if length(c) ==2
-           A (i, j ) = c(2);
-        else
-             A (i, j ) = 0;
-        end
-   end
-   
+if det(A)==0
+    fail = 1;
+    messsage = 'Det of matrix of coefficiants is zero. ';
 end
 
-if det(A)=0
-    fail = 1;
-    messsage = 'Det of matrix of coefficiants is zero. '
+if i == 1
+  [fail , message, history , final ] = Cramer(A,b);
 end
+if i == 2
+  [fail, message , history , final ] = GaussElim(A,b);
 end
+
+if i==3
+  [fail, message,history , final ]=LU_DooLittle(A, b);
+end
+
+if i == 4
+  [fail, message,history , final ]=Cholesky(A, b);
+end
+if i == 5
+  %[fail, message,history , final ]=
+end
+if i == 6
+  [fail, message,history , final ]=Jacobi(A, b, x0, t);
+end
+if i == 7
+  [fail, message,history , final ]=GS(A, b, x0, t);
+end
+
+end
+
