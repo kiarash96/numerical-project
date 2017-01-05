@@ -20,8 +20,8 @@ function [fail, message,history , final ]=GS(A, b, x0, t)
  for i =1 :m
     L(i,1:i) = A(i,1:i);
  end
- L
- U = A-L
+ 
+ U = A-L;
  x = x0;
  
  for i=1:t

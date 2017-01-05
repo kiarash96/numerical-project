@@ -1,6 +1,8 @@
 function [fail, message,history , final ]=Cholesky(A, b)
      fail = 0;
      message = '';
+     history = 0;
+     final = 0;
      m = length(b);
     [U, p] = chol(A);
     %defining history structure in this method
