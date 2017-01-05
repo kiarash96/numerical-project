@@ -51,13 +51,13 @@ public class ChapterFourController {
         );
         MatlabStruct res = null;
         try {
-            res = connection.feval("chapter-4", "integrate", args, "intValue");
+            res = connection.feval("chapter-4", "integrate", args, "result");
         } catch (MatlabInvocationException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
-        double[] ans = res.get("intValue");
-        intAnswerLatexLabel.setLatex(String.valueOf(ans[0]));
+        String result = (String) res.get("result");
+        intAnswerLatexLabel.setLatex(result);
         intPlotView.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
     }
 
