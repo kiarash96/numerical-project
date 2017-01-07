@@ -73,7 +73,6 @@ public class ChapterFourController {
 
         if (intMethodType.getValue().equals("Romberg")) {
             double[] result = res.get("result");
-            // TODO: Create latex table from result
             double[][] table = new double[n][n + 1];
 
             for (int i = 0; i < result.length; i ++)
