@@ -62,5 +62,11 @@ end
 if i == 7
   [fail, message,history , final ]=GS(A, b, x0, t);
 end
+if i == 8
+  [fail, message,history , final ]=Eigen(A);
+end
+if i == 9
+  [fail, message,history , final ]=Power(A, x0, t);
+end
 
 end
