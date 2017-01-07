@@ -106,13 +106,13 @@
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <children>
                                     <Label text="at point " />
-                                    <AbusedTextField fx:id="diffAtPointTextField" prefHeight="26.0" prefWidth="64.0" />
+                                    <AbusedTextField fx:id="diffXTextField" prefHeight="26.0" prefWidth="64.0" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <children>
                                     <Label text="with degree of " />
-                                    <AbusedTextField fx:id="diffWithDegreeOfTextField" prefHeight="26.0" prefWidth="64.0" />
+                                    <AbusedTextField fx:id="diffDegreeTextField" prefHeight="26.0" prefWidth="64.0" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -124,7 +124,7 @@
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                                  <children>
                                     <Label text="order of error " />
-                                    <TextField fx:id="diffOrderOfErrorTextField" prefHeight="26.0" prefWidth="50.0" />
+                                    <TextField fx:id="diffOrderTextField" prefHeight="26.0" prefWidth="50.0" />
                                  </children>
                               </HBox>
                            </children>
@@ -141,8 +141,7 @@
                            </rowConstraints>
                            <children>
                               <Label text="f(x) =" />
-                              <ChoiceBox fx:id="diffMethodType" prefWidth="150.0" GridPane.columnIndex="2" />
-                              <AbusedTextField fx:id="diffFunctionTextField" GridPane.columnIndex="1" />
+                              <AbusedTextField fx:id="diffFTextField" GridPane.columnIndex="1" />
                               <LatexLabel fx:id="diffFunctionLatexLabel" prefHeight="87.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Button fx:id="diffCalcButton" mnemonicParsing="false" text="calc" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                            </children>

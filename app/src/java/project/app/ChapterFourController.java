@@ -3,6 +3,7 @@ package project.app;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -30,6 +31,12 @@ public class ChapterFourController {
     @FXML Button intCalcButton;
     @FXML ImageView intPlotView;
 
+    // Diff
+    @FXML TextField diffXTextField, diffDegreeTextField, diffOrderTextField, diffHTextField, diffFTextField;
+    @FXML LatexLabel diffFunctionLatexLabel, diffAnswerLatexLabel;
+    @FXML Button diffCalcButton;
+    @FXML CheckBox richardsonCheckBox;
+
     public void init(MatlabConnection connection) {
         this.connection = connection;
         parser = new LatexParser();
@@ -46,6 +53,13 @@ public class ChapterFourController {
             intFunctionLatexLabel.setLatex(parser.latex(newValue));
         });
         intCalcButton.setOnAction(event -> callIntegral());
+
+        diffFTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            diffFunctionLatexLabel.setLatex(parser.latex(newValue));
+        });
+        diffCalcButton.setOnAction((event) -> {
+            callDiff();
+        });
     }
 
     public void callIntegral() {
@@ -85,6 +99,22 @@ public class ChapterFourController {
     }
 
     public void callDiff() {
+        MatlabStruct args = new MatlabStruct(
+                new MatlabStruct.Pair<>("func", diffFTextField.getText()),
+                new MatlabStruct.Pair<>("degree", Double.parseDouble(diffDegreeTextField.getText())),
+                new MatlabStruct.Pair<>("x", Double.parseDouble(diffXTextField.getText())),
+                new MatlabStruct.Pair<>("order", Double.parseDouble(diffOrderTextField.getText())),
+                new MatlabStruct.Pair<>("h", Double.parseDouble(diffHTextField.getText()))
+        );
 
+        MatlabStruct res = null;
+        try {
+            res = connection.feval("chapter-4/diff/", "Derivation", args, "y");
+        } catch (MatlabInvocationException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+
+        double[] ans = res.get("y");
+        diffAnswerLatexLabel.setLatex(String.valueOf(ans[0]));
     }
 }
