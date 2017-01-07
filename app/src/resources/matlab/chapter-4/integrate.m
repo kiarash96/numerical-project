@@ -48,7 +48,7 @@ ys = arrayfun(f, xs);
 
 h = plot(xs, ys);
 hold on;
-%fill(xs, ys, 'r');
+area([a:0.01:b], arrayfun(f, [a:0.01:b]));
 
 ax = gca;
 ax.XAxisLocation = 'origin';
