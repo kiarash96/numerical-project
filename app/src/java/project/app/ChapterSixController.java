@@ -38,7 +38,9 @@ public class ChapterSixController {
                 "LU Cholesky",
                 "LU Crout",
                 "Jacobi",
-                "Gauss Seidel"));
+                "Gauss Seidel",
+                "Eigen values",
+                "Power Method"));
         methodType.getSelectionModel().selectedIndexProperty()
                 .addListener(new ChangeListener<Number>() {
                     public void changed(ObservableValue ov, Number value, Number new_value) {
@@ -178,10 +180,29 @@ public class ChapterSixController {
                     String text = "";
                     int numberOfVars = steps;
                     int numberOfDatas = aLines.length;
-                    double[][] sorted = new double[numberOfVars][numberOfDatas];
+                    double[][] All = new double[numberOfVars+numberOfDatas+1][numberOfDatas];
                     for (int i = 0; i < history.length; i++) {
                         System.out.println(history[i]);
-                        sorted[i % numberOfVars][i / numberOfVars] = history[i];
+                        All[i % (numberOfVars+numberOfDatas+1)][i / (numberOfVars+numberOfDatas+1)] = history[i];
+                    }
+                    double[][] sorted = new double[numberOfVars][numberOfDatas];
+                    for (int i = 0; i < numberOfVars; i++) {
+                        for (int j = 0; j < numberOfDatas; j++) {
+                            sorted[i][j] = All [i][j];
+                        }
+                    }
+                    boolean isZero = true;
+                    double[][] createdMatrix = new double[aLines.length][aLines.length+1];
+                    for (int i = 0; i < numberOfDatas; i++) {
+                        for (int j = 0; j < numberOfDatas + 1; j++) {
+                            createdMatrix[i][j] = All[j+numberOfVars][i];
+                            if (createdMatrix[i][j]!=0){
+                                isZero = false;
+                            }
+                        }
+                    }
+                    if (!isZero){
+                        text = text + " A = " + makeTable(createdMatrix) + "  \\\\ ";
                     }
                     text = text + " X_{0} = " + makeTable(gnumbers) + "  ";
                     for (int i = 0; i < numberOfVars; i++) {
@@ -190,6 +211,45 @@ public class ChapterSixController {
                             text = text + " \\\\ ";
                         }
                     }
+                    answerLatexLabel.setLatex(text);
+                }
+                if (methodNumber == 7){
+                    String text = "";
+                    int numberOfVars = guessLines.length;
+                    int numberOfDatas = numberOfVars+1;
+                    double[][] sorted = new double[numberOfVars][numberOfDatas];
+                    for (int i = 0; i < finalX.length; i++) {
+                        sorted[i % numberOfVars][i / numberOfVars] = finalX[i];
+                    }
+                    for (int i = 0; i < numberOfVars; i++) {
+                        text = text + " \\lambda _{"+ (i+1) + "} = " + sorted[i][0] + "  , ";
+                        double [] eigenValues = new double[numberOfDatas-1];
+                        for (int j = 0; j < numberOfDatas-1; j++) {
+                            eigenValues[j] = sorted[i][j+1];
+                        }
+                        text = text + "EV_{"+ (i+1) + "} = " + makeTable(eigenValues) + "  ";
+                        if (i%5 == 4){
+                            text = text + " \\\\ ";
+                        }
+                    }
+                    answerLatexLabel.setLatex(text);
+                }
+                if (methodNumber == 8){
+                    String text = "";
+                    int numberOfVars = steps;
+                    int numberOfDatas = aLines.length;
+                    double[][] sorted = new double[numberOfVars][numberOfDatas];
+                    for (int i = 0; i < history.length; i++) {
+                        System.out.println(history[i]);
+                        sorted[i % numberOfVars][i / numberOfVars] = history[i];
+                    }
+                    for (int i = 0; i < numberOfVars; i++) {
+                        text = text + "X_{"+ (i+1) + "} = " + makeTable(sorted[i]) + "  ";
+                        if (i%5 == 4){
+                            text = text + " \\\\ ";
+                        }
+                    }
+                    text = text + "\\\\ Answer =  " + makeTable(finalX);
                     answerLatexLabel.setLatex(text);
                 }
             }

@@ -93,6 +93,12 @@ end
 if i == 7
   [fail, message,history , final ]=GS(A, b, x0, t);
 end
+if i == 8
+  [fail, message,history , final ]=Eigen(A);
+end
+if i == 9
+  [fail, message,history , final ]=Power(A, x0, t);
+end
 
 end
 >>>>>>> dae493de74e9c9a5a4ea3c6d467ab5f372f3e537

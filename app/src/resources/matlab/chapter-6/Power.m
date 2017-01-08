@@ -6,7 +6,7 @@ m=0;
 n=length(x);
 y_final=x;
 i = 1;
-history = zeros ( x, t);
+history = zeros ( size(x,1), t);
 while(i<=t)
      history(:, i)=y_final; %// Change - Save old eigenvector
      y_final=A*y_final;
@@ -15,5 +15,5 @@ while(i<=t)
      i = i+1;
 end
 final = y_final;
+history = transpose(history)
 end
-

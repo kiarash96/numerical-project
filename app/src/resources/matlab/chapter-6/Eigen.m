@@ -34,8 +34,8 @@ for v = 1: length(root)
             end
         end
         for i=j+1:m
-            a = C(i,:)-C(j,:)*(C(i,j)/C(j,j));
-            C(i,:)= a *10^4 / 10;
+             C(i,:) = C(i,:)-C(j,:)*(C(i,j)/C(j,j));
+           
         end
     end
     
