@@ -17,7 +17,6 @@ b
 x0
 t
 i
-
 %prepare error messages
 fail = 0;
 message = '';
@@ -38,36 +37,6 @@ end
 if det(A)==0
     fail = 1;
     messsage = 'Det of matrix of coefficiants is zero. ';
-<<<<<<< HEAD
-end
-
-if i == 1
-  [fail , message, history , final ] = Cramer(A,b);
-end
-if i == 2
-  [fail, message , history , final ] = GaussElim(A,b);
-end
-
-if i==3
-  [fail, message,history , final ]=LU_DooLittle(A, b);
-end
-
-if i == 4
-  [fail, message,history , final ]=Cholesky(A, b);
-end
-if i == 5
-  %[fail, message,history , final ]=
-end
-if i == 6
-  [fail, message,history , final ]=Jacobi(A, b, x0, t);
-end
-if i == 7
-  [fail, message,history , final ]=GS(A, b, x0, t);
-end
-
-end
-
-=======
 end
 
 if i == 1
@@ -101,4 +70,3 @@ if i == 9
 end
 
 end
->>>>>>> dae493de74e9c9a5a4ea3c6d467ab5f372f3e537
