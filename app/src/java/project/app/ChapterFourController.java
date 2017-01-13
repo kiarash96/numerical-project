@@ -63,7 +63,8 @@ public class ChapterFourController {
     }
 
     public void callIntegral() {
-        int n = Integer.parseInt(intHTextField.getText());
+        double nn = Double.parseDouble(intHTextField.getText());
+        int n = (int) nn;
         MatlabStruct args = new MatlabStruct(
                 new MatlabStruct.Pair<>("f", intFunctionTextField.getText()),
                 new MatlabStruct.Pair<>("start", Double.parseDouble(intStartTextField.getText())),
