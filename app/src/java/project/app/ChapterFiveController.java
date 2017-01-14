@@ -7,6 +7,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import matlabcontrol.MatlabInvocationException;
 import project.LatexParser;
+import project.app.utility.Display;
 import project.app.utility.MatlabConnection;
 import project.app.utility.MatlabStruct;
 import project.controls.LatexLabel;
@@ -59,19 +60,20 @@ public class ChapterFiveController {
 
         MatlabStruct res = null;
         try {
-            res = connection.feval("chapter-5", "chapter5", args, "xs", "ys");
+            res = connection.feval("chapter-5", "chapter5", args, "xs", "ys", "zs");
         } catch (MatlabInvocationException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
-        double[] xs = res.get("xs"), ys = res.get("ys");
-        StringBuilder s = new StringBuilder();
-        for (int i = 0; i < xs.length; i ++)
-            s.append((i == 0 ? "" : ", " + xs[i]));
-        s.append("\\\\");
-        for (int i = 0; i < ys.length; i ++)
-            s.append((i == 0 ? "" : ", ") + ys[i]);
+        double[] xs = res.get("xs"), ys = res.get("ys"), zs = res.get("zs");
 
-        answerLatexLabel.setLatex(s.toString());
+        StringBuilder result = new StringBuilder();
+        result.append("\\begin{array}{c|*{" + xs.length + "}{c}}");
+        result.append("x_i & " + Display.alignArray(xs) + "\\\\");
+        result.append("y_i & " + Display.alignArray(ys) + "\\\\");
+        if (methodType.getSelectionModel().getSelectedIndex() > 4)
+            result.append("y'_i & " + Display.alignArray(zs));
+        result.append("\\end{array}\\\\");
+        answerLatexLabel.setLatex(result.toString());
     }
 }

@@ -1,6 +1,10 @@
-function [ ansX , ansY ] = chapter5( equation1 , equation2 , h , x0 , y0 ,t0 ,  method , step )
+function [ ansX , ansY, ansZ ] = chapter5( equation1 , equation2 , h , x0 , y0 ,t0 ,  method , step )
 %UNTITLED9 Summary of this function goes here
 %   Detailed explanation goes here
+ansX = [];
+ansY = [];
+ansZ = [];
+
 method
 switch method
     case 1
@@ -14,8 +18,8 @@ switch method
     case 5
         [ ansX , ansY ] = Four_RungeKutta( equation1 , x0, y0, h , step );
     case 6
-        [ ansX , ansY ] = DE_Euler( equation1 ,equation2 ,  x0, y0, t0 ,h , step );
+        [ ansX , ansY, ansZ ] = DE_Euler( equation1 ,equation2 ,  x0, y0, t0 ,h , step );
     case 7
-        [ ansX , ansY ] = DE_RungeKutta( equation1 ,equation2 ,  x0, y0, t0 ,h , step);
+        [ ansX , ansY, ansZ ] = DE_RungeKutta( equation1 ,equation2 ,  x0, y0, t0 ,h , step);
 end
 

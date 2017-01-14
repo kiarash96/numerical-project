@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import matlabcontrol.MatlabInvocationException;
 import project.LatexParser;
+import project.app.utility.Display;
 import project.app.utility.MatlabConnection;
 import project.app.utility.MatlabStruct;
 import project.controls.LatexLabel;
@@ -65,10 +66,12 @@ public class ChapterFourController {
     public void callIntegral() {
         double nn = Double.parseDouble(intHTextField.getText());
         int n = (int) nn;
+        double a = Double.parseDouble(intStartTextField.getText()),
+                b = Double.parseDouble(intEndTextField.getText());
         MatlabStruct args = new MatlabStruct(
                 new MatlabStruct.Pair<>("f", intFunctionTextField.getText()),
-                new MatlabStruct.Pair<>("start", Double.parseDouble(intStartTextField.getText())),
-                new MatlabStruct.Pair<>("end", Double.parseDouble(intEndTextField.getText())),
+                new MatlabStruct.Pair<>("start", a),
+                new MatlabStruct.Pair<>("end", b),
                 new MatlabStruct.Pair<>("h", Double.parseDouble(intHTextField.getText())),
                 new MatlabStruct.Pair<>("h", n),
                 new MatlabStruct.Pair<>("method", intMethodType.getSelectionModel().getSelectedIndex()),
@@ -76,26 +79,45 @@ public class ChapterFourController {
         );
         MatlabStruct res = null;
         try {
-            res = connection.feval("chapter-4", "integrate", args, "result", "error");
+            res = connection.feval("chapter-4", "integrate", args,
+                    "xs", "ws", "ys", "result", "error");
         } catch (MatlabInvocationException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
         double[] error = res.get("error");
 
-        if (error[0] == 0)
+        if (error[0] == 1)
+            intAnswerLatexLabel.setLatex(res.get("result"));
+        else {
             intPlotView.setImage(new Image(this.getClass().getResourceAsStream("/matlab/plot.jpg")));
 
-        if (intMethodType.getValue().equals("Romberg")) {
-            double[] result = res.get("result");
-            double[][] table = new double[n][n + 1];
+            if (intMethodType.getValue().equals("Romberg")) {
+                double[] result = res.get("result");
+                double[][] table = new double[n][n + 1];
 
-            for (int i = 0; i < result.length; i ++)
-                table[i % n][i / n] = result[i];
-            intAnswerLatexLabel.setLatex(ChapterSixController.makeTable(table));
-        } else {
-            String result = res.get("result");
-            intAnswerLatexLabel.setLatex(result);
+                for (int i = 0; i < result.length; i++)
+                    table[i % n][i / n] = result[i];
+                intAnswerLatexLabel.setLatex(ChapterSixController.makeTable(table));
+            } else {
+                double[] ans = res.get("result");
+                double[] xs = res.get("xs"),
+                        ys = res.get("ys"),
+                        ws = res.get("ws");
+
+                StringBuilder result = new StringBuilder();
+                result.append("\\begin{array}{c|*{" + xs.length + "}{c}}");
+                result.append("x_i & " + Display.alignArray(xs) + "\\\\");
+                result.append("f(x_i) & " + Display.alignArray(ys) + "\\\\");
+                if (intMethodType.getValue().equals("Gauss Legendre"))
+                    result.append("w_i & " + Display.alignArray(ws));
+                result.append("\\end{array}\\\\");
+                result.append("\\int_{" + Display.numToStr(a) + "}^{" + Display.numToStr(b)
+                        + "} " + intFunctionTextField.getText() + " \\, dx "
+                        + " = " + Display.numToStr(ans[0]));
+
+                intAnswerLatexLabel.setLatex(result.toString());
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-function [xs, ws, intValue] = gaussLegendre(func, a, b, n)
+function [xs, ys, ws, intValue] = gaussLegendre(func, a, b, n)
     syms x;
     P(1) = 1 + x - x;
     P(2) = x;
@@ -14,9 +14,11 @@ function [xs, ws, intValue] = gaussLegendre(func, a, b, n)
     f = eval(func);
     fp = (b - a) / 2 * (subs(f,(b-a)/2 * x + (b+a)/2));
 
+    ys = double(subs(fp, xs));
+
     intValue = 0;
     for i = 1:length(xs)
-        intValue = intValue + ws(i) * double(subs(fp, xs(i)));
+        intValue = intValue + ws(i) * ys(i);
     end
 end
 

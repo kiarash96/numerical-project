@@ -1,4 +1,9 @@
-function [result, error] = integrate(func, a, b, h, n, method, addr)
+function [xs, ws, ys, result, error] = integrate(func, a, b, h, n, method, addr)
+
+xs = [];
+ws = [];
+ys = [];
+result = '';
 
 func = strcat('@(x)', func);
 f = str2func(func);
@@ -10,43 +15,37 @@ if (method <= 2 || method == 5)
     xs = [a:h:b];
     ys = arrayfun(f, xs);
     if (method == 0)
-        intValue = trapezoidal(xs, ys, h);
+        result = trapezoidal(xs, ys, h);
     elseif (method == 1)
         if (mod(n, 2) == 1)
             error = 1;
             result = '\text{N must be even!}';
         else
-            intValue = simpsonOneThird(xs, ys, h);
+            result = simpsonOneThird(xs, ys, h);
         end
     elseif (method == 2)
         if (mod(n, 3) ~= 0)
             error = 1;
             result = '\text{N must be a multiple of 3}';
         else
-            intValue = simpsonThreeEight(xs, ys, h);
+            result = simpsonThreeEight(xs, ys, h);
         end
     elseif (method == 5)
-        intValue = customSimpson(xs, ys, h);
-    end
-
-    % create result string if no errors occured.
-    if (error == 0)
-        result = strcat(mat2str(xs), '\\', mat2str(ys), '\\', num2str(intValue));
+        result = customSimpson(xs, ys, h);
     end
 elseif (method == 3)
     result = romberg(f, a, b, n);
 elseif (method == 4)
-    [xs, ws, intValue] = gaussLegendre(func, a, b, n);
-    result = strcat(mat2str(xs), '\\', mat2str(ws), '\\', num2str(intValue));
+    [xs, ys, ws, result] = gaussLegendre(func, a, b, n);
 end
 
 % plot
 figure('Visible','off');
 
-xs = [a-1:0.01:b+1];
-ys = arrayfun(f, xs);
+xss = [a-1:0.01:b+1];
+yss = arrayfun(f, xss);
 
-h = plot(xs, ys);
+h = plot(xss, yss);
 hold on;
 area([a:0.01:b], arrayfun(f, [a:0.01:b]));
 
