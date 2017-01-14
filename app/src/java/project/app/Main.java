@@ -4,9 +4,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
+import project.app.utility.Display;
 import project.app.utility.MatlabConnection;
+
+import java.math.RoundingMode;
+import java.util.Optional;
 
 /**
  * Created by kiarash on 12/9/16.
@@ -100,6 +106,23 @@ public class Main extends Application {
 
         primaryStage.setTitle("Numerical Methods Project");
         primaryStage.setScene(new Scene(accordion));
+
+
+        TextInputDialog diag1 = new TextInputDialog("4");
+        diag1.setContentText("Enter number of decimal digits: ");
+        Optional<String> result = diag1.showAndWait();
+        if (result.isPresent())
+            Display.setDigits(Integer.parseInt(result.get()));
+
+        ChoiceDialog<String> diag2 = new ChoiceDialog<>("Round off", "Round off", "Chop off");
+        diag2.setContentText("Select rounding method: ");
+        Optional<String> result2 = diag2.showAndWait();
+        if (result2.isPresent())
+            if (result2.equals("Round off"))
+                Display.format.setRoundingMode(RoundingMode.HALF_UP);
+            else
+                Display.format.setRoundingMode(RoundingMode.DOWN);
+
         primaryStage.show();
     }
 

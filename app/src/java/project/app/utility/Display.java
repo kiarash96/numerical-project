@@ -1,11 +1,15 @@
 package project.app.utility;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by kiarash on 1/13/17.
  */
 public class Display {
+    public static DecimalFormat format = new DecimalFormat("#.####");
+
     public static String numToStr(double x) {
-        return "" + x;
+        return "" + format.format(x);
     }
 
     public static String alignArray(double[] arr) {
@@ -14,6 +18,12 @@ public class Display {
             out.append((i == 0 ? "" : " & ") + numToStr(arr[i]));
         return out.toString();
     }
-    
+
+    public static void setDigits(int n) {
+        String str = "#.";
+        for (int i = 0; i < n; i ++)
+            str += "#";
+        format = new DecimalFormat(str);
+    }
 
 }

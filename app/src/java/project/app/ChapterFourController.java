@@ -138,6 +138,6 @@ public class ChapterFourController {
         }
 
         double[] ans = res.get("y");
-        diffAnswerLatexLabel.setLatex(String.valueOf(ans[0]));
+        diffAnswerLatexLabel.setLatex(Display.numToStr(ans[0]));
     }
 }
